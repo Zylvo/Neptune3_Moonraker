@@ -1,0 +1,19 @@
+alias: Neptune 3 - Bed temp notification
+description: ""
+trigger:
+  - platform: template
+    value_template: >-
+      {{(states.sensor.neptune3_sensor.attributes['heater_bed']['temperature'] |
+      float | round(1) | string ) < "30.0" }}
+    for:
+      hours: 0
+      minutes: 0
+      seconds: 15
+condition: []
+action:
+  - device_id: <your_mobile_device_id>
+    domain: mobile_app
+    type: notify
+    title: Elegoo Neptune 3
+    message: Bed temp is below 30 degrees
+mode: single
