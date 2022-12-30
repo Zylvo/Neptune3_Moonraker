@@ -1,0 +1,16 @@
+alias: Neptune 3 - Print Ready Notification
+description: ""
+trigger:
+  - platform: state
+    entity_id:
+      - sensor.neptune3_state
+    from: printing
+    to: complete
+condition: []
+action:
+  - device_id: <your_mobile_device_id>
+    domain: mobile_app
+    type: notify
+    title: Elegoo Neptune 3
+    message: 3D Print is ready
+mode: single
