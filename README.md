@@ -3,6 +3,12 @@ Moonraker integration for Home Assistant on Elegoo Neptune 3 example (will work 
 Preview of integration (I love simplicity, but there are more sensors that you can build on):\
 <img width="541" alt="image" src="https://user-images.githubusercontent.com/7250436/210072325-f8439896-c8d5-4673-b392-157fa1559de7.png">
 
+You need to put 'moonraker.yaml' in '/config/packages/' in Home Assistant and add:
+```yaml
+homeassistant:
+  packages: !include_dir_named packages
+```
+to '/config/configuration.yaml' file
 
 Credits:\
 [@bsas](https://github.com/bsas/Neptune-Elegoo3-Klipper?fbclid=IwAR1JbzsbvF2zrTuMGfZEs_DoXWbSbFX0B0ppYkVV6pg8jCPXOgh2P9tsAcs)\
