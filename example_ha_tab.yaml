@@ -1,0 +1,43 @@
+type: vertical-stack
+cards:
+  - type: custom:mushroom-title-card
+    title: Elegoo Neptune 3
+  - type: custom:mushroom-chips-card
+    chips:
+      - type: entity
+        entity: sensor.neptune3_bed_temp
+        icon: mdi:printer-3d
+        use_entity_picture: false
+      - type: entity
+        entity: sensor.neptune3_hotend_temp
+        icon: mdi:printer-3d-nozzle-heat
+      - type: entity
+        entity: sensor.neptune3_mcu_pi_temp
+        icon: mdi:memory
+      - type: entity
+        entity: sensor.neptune3_state
+        icon: mdi:printer-eye
+      - type: entity
+        entity: sensor.neptune3_current_progress
+        icon: mdi:progress-clock
+      - type: entity
+        entity: sensor.neptune3_time_remaining
+  - show_state: true
+    show_name: true
+    camera_view: auto
+    type: picture-entity
+    camera_image: camera.neptune_3_thumbnail
+    entity: sensor.neptune3_eta
+    name: Print ETA
+  - type: conditional
+    conditions:
+      - entity: sensor.neptune3_sensor
+        state_not: unavailable
+    card:
+      type: custom:mushroom-title-card
+      title: >-
+        {{
+        states.sensor.neptune3_sensor.attributes['print_stats']['filename'].split("/")[1]
+        if "/" in states(("sensor.neptune3_current_print")) !=0 else
+        states.sensor.neptune3_sensor.attributes['print_stats']['filename'] if
+        states('sensor.neptune3_sensor') != 'unknown' else None }}
